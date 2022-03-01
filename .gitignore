@@ -1,0 +1,9 @@
+node_modules/
+.env
+test.js
+*.log
+.vscode
+coverage
+src/js/utils
+__test__
+jest.config.cjs
