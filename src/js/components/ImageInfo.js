@@ -21,7 +21,8 @@ export default class ImageInfo {
     render() {
       if (this.data.visible) {
         const { name, url, temperament, origin } = this.data.image;
-  
+
+        this.$imageInfo.classList.remove('fade');
         this.$imageInfo.innerHTML = `
           <div class="content-wrapper">
             <div class="title">
@@ -34,7 +35,21 @@ export default class ImageInfo {
               <div>태생: ${origin}</div>
             </div>
           </div>`;
+
         this.$imageInfo.style.display = "block";
+
+        document.addEventListener('click', event => {
+          if (event.target === document.querySelector('.ImageInfo') || event.target === document.querySelector(".close")) {
+            this.$imageInfo.classList.add('fade');
+          }
+        });
+
+        document.addEventListener('keyup', event => {
+          if (event.key === 'Escape') {
+            this.$imageInfo.classList.add('fade');
+          }
+        });
+
       } else {
         this.$imageInfo.style.display = "none";
       }

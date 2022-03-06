@@ -1,3 +1,4 @@
+import { getItem } from "../utils/sessionStorage.js";
 export default class SearchResult {
     $searchResult = null;
     data = null;
@@ -8,7 +9,14 @@ export default class SearchResult {
       this.$searchResult.className = "SearchResult";
       $target.appendChild(this.$searchResult);
   
-      this.data = initialData;
+      const datas = getItem('data');
+      
+      if (datas) {
+        this.data = datas 
+      } else {
+        this.data = initialData;
+      }
+      
       this.onClick = onClick;
   
       this.render();

@@ -4,6 +4,6 @@ test.js
 *.log
 .vscode
 coverage
-src/js/utils
+src/js/utils/validator.js
 __test__
 jest.config.cjs

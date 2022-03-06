@@ -8,6 +8,7 @@ import Loading from './components/Loading.js';
 import api from './services/api/api.js';
 import EmptyResult from './components/EmptyResult.js';
 import RandomBtn from './components/RandomBtn.js';
+import { setItem, getItem } from './utils/sessionStorage.js';
 
 export default class App {
   $target = null;
@@ -15,6 +16,7 @@ export default class App {
 
   constructor($target) {
     this.$target = $target;
+    // this.data = getItem('DATAS');
     
     this.darkModeToggle = new DarkModeToggle({ $target });
 
@@ -50,10 +52,14 @@ export default class App {
       $target,
       initialData: this.data,
       onClick: image => {
-        this.imageInfo.setState({
-          visible: true,
-          image
-        });
+        this.loading.setState({ visible: true });
+        api.fetchCatFromId(image.id).then(({data}) => {
+          this.loading.setState({ visible: false });
+          this.imageInfo.setState({
+            visible: true,
+            image: data
+          })
+        });  
       }
     });
 
@@ -79,6 +85,7 @@ export default class App {
     if (this.data?.length) {
       this.emptyResult.setState({visible: false});
       this.searchResult.setState(nextData);
+      setItem('data', this.data);
     } else {
       this.emptyResult.setState({visible: true});
       this.searchResult.setState([]);

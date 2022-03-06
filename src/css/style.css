@@ -12,7 +12,31 @@
   body * {
     font-family: Goyang;
   }
-  
+
+  img {
+    max-height: 500px;
+  }
+
+  .dark {
+    background-color: #000;
+    color: white;
+  }
+
+  body.dark .ImageInfo .content-wrapper {
+    background-color: #000;
+    color: white;
+  }
+
+  .light {
+    background-color: white;
+    color: #000;
+  }
+
+  body.light .ImageInfo .content-wrapper {
+    background-color: white;
+    color: #000;
+  }
+
   *,
   *:before,
   *:after {
@@ -58,6 +82,32 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.5s;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .ImageInfo.fade {
+    animation: fadeOut 1s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      visibility: hidden;
+      display: none;
+    }
   }
   
   .ImageInfo .title {
@@ -110,6 +160,10 @@
     .SearchResult {
       grid-template-columns: repeat(2, minmax(auto, 1fr));
     }
+
+    .ImageInfo .content-wrapper {
+      width: 100%;
+    }
   }
 
   @media (min-width: 769px) and (max-width: 992px) {
@@ -123,6 +177,11 @@
     body {
       background-color: #000;
       color: white;
+    }
+
+    .ImageInfo .content-wrapper, content{
+      background-color: #000;
+      color:white;
     }
   }
   

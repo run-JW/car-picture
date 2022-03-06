@@ -15,9 +15,9 @@ const api = {
   fetchCats: keyword => {
     return request(`${API_ENDPOINT}/api/cats/search?q=${keyword}`);
   },
-  // fetchGifAll: () => {
-  //   return request(`${API_ENDPOINT}/api/gif/all`);
-  // }
+  fetchCatFromId: id => {
+    return request(`${API_ENDPOINT}/api/cats/${id}`);
+  },
   fetchCatsRandom50: () => {
     return request(`${API_ENDPOINT}/api/cats/random50`);
   }

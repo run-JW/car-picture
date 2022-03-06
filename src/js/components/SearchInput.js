@@ -10,6 +10,10 @@ export default class SearchInput {
     $searchInput.className = "SearchInput";
     $target.appendChild($searchInput);
 
+    this.$last5Keywords = [];
+    const $last5Keywords = document.createElement('section');
+    $last5Keywords.className = 'Last5Keyword';
+
     $searchInput.addEventListener("keyup", e => {
       if (e.key === 'Enter') {
         onSearch(e.target.value);
@@ -22,5 +26,4 @@ export default class SearchInput {
 
     console.log("SearchInput created.", this);
   }
-  render() {}
 }
